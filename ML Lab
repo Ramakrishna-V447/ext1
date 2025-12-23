@@ -1,0 +1,66 @@
+PROG 1 ::::::::::
+
+import statistics
+data=[10,20,30,40]
+mean=statistics.mean(data)
+median=statistics.median(data)
+mode=statistics.mode(data)
+variance=statistics.variance(data)
+stdev=statistics.stdev(data)
+print("data:",data)
+print("mean:",mean)
+print("median:",median)
+print("variance:",variance)
+print("mode:",mode)
+print("stdev:",stdev)
+
+PROG 2:::::::::::
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+data = {
+    'x': [1, 2, 3, 4, 5],
+    'y': [2, 4, 5, 4, 6]
+}
+df = pd.DataFrame(data)
+x = df['x'].values
+y = df['y'].values 
+x_mean = np.mean(x)
+y_mean = np.mean(y)
+b1 = np.sum((x - x_mean) * (y - y_mean)) / np.sum((x - x_mean) ** 2)
+b0 = y_mean - b1 * x_mean
+y_pred = b0 + b1 * x
+plt.scatter(x, y)
+plt.plot(x, y_pred)
+plt.xlabel("x")
+plt.ylabel("y")
+plt.title("Linear Regression")
+plt.show()
+
+
+PROG 3 ::::::::::::::
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt 
+data = {
+    'x': [1, 2, 3, 4, 5, 6],
+    'class': [0, 0, 0, 1, 1, 1]
+}
+df = pd.DataFrame(data)
+x = df['x'].values
+y = df['class'].values
+def sigmoid(z):
+    return 1 / (1 + np.exp(-z))
+b0 = -4
+b1 = 1.2
+x_line = np.linspace(1, 6, 100)
+y_prob = sigmoid(b0 + b1 * x_line)
+plt.scatter(x, y)
+plt.plot(x_line, y_prob)
+plt.xlabel("Feature x")
+plt.ylabel("Probability of class 1")
+plt.title("Binary Classification")
+plt.show()
